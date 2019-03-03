@@ -1,4 +1,4 @@
-# air-combat
+# Air combat model
 ## Ordinary Differential Equations Integration tutorial
 The user should describe his problem in his own classes which should implement the FirstOrderDifferentialEquations interface (or FirstOrderFieldDifferentialEquations interface). Then he should pass it to the integrator he prefers among all the classes that implement the FirstOrderIntegrator interface (or the FirstOrderFieldIntegrator interface). The following example shows how to implement the simple two-dimensional problem using double primitives:
 

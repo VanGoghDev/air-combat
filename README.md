@@ -38,3 +38,6 @@ FirstOrderDifferentialEquations ode = new CircleODE(new double[] { 1.0, 1.0 }, 0
 double[] y = new double[] { 0.0, 1.0 }; // initial state
 dp853.integrate(ode, 0.0, y, 16.0, y); // now y contains final state at time t=16.0
 ```
+http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math4/ode/nonstiff/DormandPrince54Integrator.html
+
+http://commons.apache.org/proper/commons-math/userguide/ode.html

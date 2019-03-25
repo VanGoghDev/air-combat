@@ -1,9 +1,8 @@
 package entities;
 
-import org.apache.commons.math3.linear.RealVector;
-
 public interface DynamicEntityInterface{
-    double[] getRight(double[] x, int i, int j);
+    //double getRight(double[] x, int i, int j);
+    Double[] getRight(double[] x, int j);
     double getInitialState(int i);
     void setX(double[] x, int j);
 }

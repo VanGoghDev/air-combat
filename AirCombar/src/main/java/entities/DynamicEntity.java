@@ -1,11 +1,9 @@
 package entities;
 
-import org.apache.commons.math3.linear.RealVector;
-
 public class DynamicEntity implements DynamicEntityInterface{
     private double x[];
     private double[] initialState;
-    private static int DIMENSION;
+    private static int DIMENSION = 7;
 
     public DynamicEntity() {
     }
@@ -14,28 +12,56 @@ public class DynamicEntity implements DynamicEntityInterface{
         this.initialState = initialState;
     }
 
-    public double[] getRight(double[] x, int i, int j) {
-        int count;
+    /*public double getRight(double[] x, int i, int j) {
         double[] xDot = new double[DIMENSION];
+        int count;
         if (j == 0) {
             count = 0;
         } else {
-            count = j * 6;
+            count = j * DIMENSION;
         }
-
         double mLa = 100;
         double kT = 100;
         double deltaM = 2.24;  // fuel consumption su-35
 
-        xDot[count] = x[count + 3];     // x = vx
-        xDot[count + 1] = x[count + 4]; // y = vy
-        xDot[count + 2] = x[count + 5]; // z = vz
-        xDot[count + 3] = kT * (deltaM) / mLa;
-        xDot[count + 4] = kT * (deltaM) / mLa;
-        xDot[count + 5] = kT * (deltaM) / mLa;
-        xDot[count + 6] -= deltaM;
+        xDot[0] = x[count + 3];     // x = vx
+        xDot[1] = x[count + 4]; // y = vy
+        xDot[2] = x[count + 5]; // z = vz
+        xDot[3] = kT * (deltaM) / mLa;
+        xDot[4] = kT * (deltaM) / mLa;
+        xDot[5] = kT * (deltaM) / mLa;
+        xDot[6] -= deltaM;
+        return xDot[i];
+    }*/
+
+    public Double[] getRight(double[] x, int j) {
+        Double[] xDot = new Double[DIMENSION];
+
+        // initialization of Double[] in order to avoid NullExceptions
+        for (int i = 0; i < xDot.length; i++) {
+            xDot[i] = 0.0;
+        }
+
+        int count;
+        if (j == 0) {
+            count = 0;
+        } else {
+            count = j * DIMENSION;
+        }
+        double mLa = 100;
+        double kT = 100;
+        double deltaM = 0.1;  // fuel consumption su-35
+
+        xDot[0] = x[count + 3];     // x = vx
+        xDot[1] = x[count + 4];     // y = vy
+        xDot[2] = x[count + 5];     // z = vz
+        xDot[3] = kT * (deltaM) / mLa;
+        xDot[4] = kT * (deltaM) / mLa;
+        xDot[5] = kT * (deltaM) / mLa;
+        xDot[6] -= deltaM;
         return xDot;
     }
+
 
     public double getInitialState(int i) {
         return 0;
@@ -43,13 +69,13 @@ public class DynamicEntity implements DynamicEntityInterface{
 
     public void setX(double[] x, int j) {
         int count;
-        this.x = new double[6];
+        this.x = new double[DIMENSION];
         if (j == 0) {
             count = 0;
         } else {
-            count = j * 6;
+            count = j * DIMENSION;
         }
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < DIMENSION; i++) {
             this.x[i] = x[count + i];
         }
     }

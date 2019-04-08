@@ -8,7 +8,6 @@ import ru.firsov.entities.Aircraft;
 import ru.firsov.entities.DynamicEntityInterface;
 import ru.firsov.entities.Missile;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +16,21 @@ public class Scene implements FirstOrderDifferentialEquations {
     private List<DynamicEntityInterface> entities = new ArrayList<DynamicEntityInterface>();
     private double[] initialState;
     private static int DIMENSION = 7;
+
+    private List<Double[]> testEuler = new ArrayList<Double[]>();
+
+/*
+    public double[] getRight(double[] x, double t) {
+        double[] xDot = new double[x.length];
+        xDot[0] = t * t - 2 * x[0];
+        xDot[1] = t * t - 2 * x[0];
+        return xDot;
+    }
+*/
+
+    public void addResult(double[] x) {
+        testEuler.add(ArrayUtils.toObject(x));
+    }
 
     public Scene() {
     }
@@ -76,7 +90,7 @@ public class Scene implements FirstOrderDifferentialEquations {
         }
 
         // можно подумать над тем, чтобы вывести этот кусок кода из текущего метода
-        String strFilePath = "C:/Users/User/Desktop/result.txt";
+        /*String strFilePath = "C:/Users/User/Desktop/result.txt";
         String newLine = System.getProperty("line.separator");
         String comma = ",";
         Double[] doubleArray = ArrayUtils.toObject(x);
@@ -96,6 +110,6 @@ public class Scene implements FirstOrderDifferentialEquations {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

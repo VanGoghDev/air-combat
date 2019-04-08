@@ -28,6 +28,19 @@
             <artifactId>xchart</artifactId>
             <version>3.5.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.kerner1000</groupId>
+            <artifactId>javafx-chart-zooming</artifactId>
+            <version>0.0.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.gillius</groupId>
+            <artifactId>jfxutils</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -39,6 +52,14 @@
                 <version>8.7.0</version>
                 <configuration>
                     <mainClass>ru.firsov.Main</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>

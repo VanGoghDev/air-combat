@@ -50,8 +50,8 @@ public class DynamicEntity implements DynamicEntityInterface{
     }
 
     public Double[] getRight(double[] x, int j) {
-        this.setX(x, j);
-        this.addX(x, j);
+        //this.setX(x, j);
+        //this.addX(x, j);
         Double[] xDot = new Double[DIMENSION];
 
         // initialization of Double[] in order to avoid NullExceptions
@@ -85,11 +85,6 @@ public class DynamicEntity implements DynamicEntityInterface{
     public void setX(double[] x, int j) {
         int count = checkIndex(j);
         this.x = new double[DIMENSION];
-        /*if (j == 0) {
-            count = 0;
-        } else {
-            count = j * DIMENSION;
-        }*/
         for (int i = 0; i < DIMENSION; i++) {
             this.x[i] = x[count + i];
         }

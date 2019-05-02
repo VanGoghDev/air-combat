@@ -1,25 +1,33 @@
 package entities;
 
-import org.apache.commons.math3.exception.DimensionMismatchException;
-import org.apache.commons.math3.exception.MaxCountExceededException;
-import org.apache.commons.math3.linear.RealVector;
-
 public class Missile extends DynamicEntity {
-    private double[] initialState;
-    private double x[];
+    private double[] targetsX;
+
+    private static int DIMENSION = 7;
+
+    public void setTargetsX(double[] targetsX) {
+        this.targetsX = targetsX;
+    }
 
     public double getInitialState(int i) {
         return initialState[i];
     }
 
-    public Missile() {
+    public Missile(double[] initialState, double mLa, double deltaM, double kT) {
+        super(initialState, mLa, deltaM, kT);
     }
 
-    public Missile(double[] initialState) {
-        this.initialState = initialState;
-    }
+    @Override
+    public Double[] getRight(double[] x, int j) {
+        Double xDot[] = super.getRight(x, j);
+        int count = checkIndex(j);
 
-    public int getDimension() {
-        return 0;
+        double psi = Math.atan((targetsX[2] - x[count + 2])/ (targetsX[0] - x[count]));
+        double epsilon = Math.atan(Math.sqrt(Math.pow((targetsX[0] - x[count]), 2) + Math.pow((targetsX[2] - x[count + 2]), 2)) / (targetsX[1] - x[count + 1]));
+
+        xDot[3] *= Math.cos(epsilon) * Math.cos(psi) - Math.sin(epsilon) + Math.cos(epsilon) * Math.sin(psi);
+        xDot[4] *= 2 * Math.cos(epsilon) + Math.sin(epsilon) * Math.sin(psi);
+        xDot[5] *= 2 * Math.cos(psi);
+        return xDot;
     }
 }
